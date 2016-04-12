@@ -32,9 +32,11 @@
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#">Resumen</a></li>
                         <li><a href="consultarAccionista.jsp">Información Accionistas</a></li>
-                        <li><a href="insertarTransaccion.jsp">Insertar Transacción</a></li>
+                        <li><a href="comprarAccion.jsp">Comprar Acción</a></li>
+                        <li><a href="insertarTransaccion.jsp">Registrar Transacción</a></li>
                         <li><a href="interesesMensuales.jsp">Intereses Mensuales</a></li>
-                        <li><a href="#">Estadísticas</a></li>
+                        <li><a href="reportes.jsp#">Reportes</a></li>
+                        <li><a href="grid.jsp#">Grid</a></li>
                     </ul>
             </div>
         </nav>       

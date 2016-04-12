@@ -1,13 +1,13 @@
-package controlador;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package controlador;
 
 import datos.DAOTransaccion;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -24,7 +24,7 @@ import modelo.Transaccion;
  *
  * @author Elio
  */
-public class InsertarTransaccion extends HttpServlet {
+public class ComprarAccion extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,7 +36,7 @@ public class InsertarTransaccion extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException{   
+            throws ServletException, IOException {
         
     }
 
@@ -69,10 +69,13 @@ public class InsertarTransaccion extends HttpServlet {
         processRequest(request, response);
         
         String accionista = request.getParameter("accionista");
-        String tipoOperacion = request.getParameter("tipoOperacion");
+        String tipoOperacion = "Compra accion";
         String monto = request.getParameter("monto");
+        String numAcciones = request.getParameter("numacciones");
         String fecha = request.getParameter("fecha");
-               
+        
+        Double valorAccion = Double.parseDouble(monto)/Integer.parseInt(numAcciones);
+        
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         
         Date f = null;
@@ -83,15 +86,20 @@ public class InsertarTransaccion extends HttpServlet {
             Logger.getLogger(InsertarTransaccion.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        Transaccion transaccion = new Transaccion(accionista, tipoOperacion, Double.parseDouble(monto), f);
-        try {
-            DAOTransaccion daoT = new DAOTransaccion();
-            daoT.Insertar(transaccion);
-        } catch (Exception ex) {
-            Logger.getLogger(InsertarTransaccion.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println(ex);
+        for (int i = 0; i < Integer.parseInt(numAcciones); i++)
+        {
+            Transaccion transaccion = new Transaccion(accionista, tipoOperacion, valorAccion, f);
+            try {
+                DAOTransaccion daoT = new DAOTransaccion();
+                daoT.Insertar(transaccion);
+            } 
+            catch (Exception ex) {
+                Logger.getLogger(InsertarTransaccion.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex);
+            }
         }
     }
+    
 
     /**
      * Returns a short description of the servlet.

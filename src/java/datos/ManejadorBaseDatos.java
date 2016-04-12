@@ -60,9 +60,7 @@ public class ManejadorBaseDatos {
         }
         catch(SQLException ex){
             throw new Exception ("Error de conexion: " + ex.getMessage());
-        }
-                
-        
+        }                      
     }
     
     public int Actualizar(PreparedStatement sentencia) throws Exception{
